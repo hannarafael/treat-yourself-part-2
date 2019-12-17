@@ -91,6 +91,7 @@ module.exports = function (app) {
         query: req.body.query,
         data: response.data.businesses
       });
+      
     });
 
 

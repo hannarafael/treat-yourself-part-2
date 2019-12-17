@@ -14,6 +14,7 @@ module.exports = function(app) {
       res.json(dbExample);
     });
   });
+ 
 
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
@@ -22,3 +23,6 @@ module.exports = function(app) {
     });
   });
 };
+
+
+
