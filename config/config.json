@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "Butter1@",
-    "database": "treat_db",
+    "password": "thiskid1029",
+    "database": "treatyourself_DB",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": false
