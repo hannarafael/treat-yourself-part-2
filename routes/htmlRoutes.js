@@ -32,7 +32,7 @@ module.exports = function (app) {
         if (result.password === req.body.password) {
           req.session.loggedin = true;
           req.session.username = req.body.username;
-          res.send(200,"logged in");
+          res.redirect("index2.html");
          }
          else{
           res.send(200,"wrong password");
@@ -96,12 +96,27 @@ module.exports = function (app) {
       }
     }).then((response) => {
       console.log(response.data.businesses);
+      var h = "<html><body>INS</body></html>"
+      var bud = "";
+      for(var i=0; i<10; i++){
+        bud += response.data.businesses[i].name
+        bud += "<br>"
+        bud += response.data.businesses[i].rating
+        bud += "<br>"
+        bud += response.data.businesses[i].location.address1
+        bud += "<br>"
+        bud += response.data.businesses[i].location.city
+        bud += "<br>"
+        bud += response.data.businesses[i].location.state
+        bud += "<br>"
+        bud += response.data.businesses[i].location.zip_code
+        bud += "<br>"
+        bud += "<img src='"+response.data.businesses[i].image_url+"' height='150' width='150'/><br>";
+        bud += "<br>"
+        bud += "<br>"
+      }
 
-      res.json("200", {
-        example: req.body,
-        query: req.body.query,
-        data: response.data.businesses
-      });
+      res.send(bud);
       
     });
 
