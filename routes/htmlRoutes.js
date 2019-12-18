@@ -19,7 +19,7 @@ module.exports = function (app) {
     });
   });
 
-
+//--------------LOGIN ROUTE-----------------// 
   app.post("/login", function (req, res) {
     db.User.findOne({
       where: {
@@ -48,13 +48,13 @@ module.exports = function (app) {
     });
   });
 
-  //---------------------------------------------//
+  //-----------------LOGOUT---------------------------//
   app.post("/logout", function (req, res) {
     req.session = null;
     res.send("logged out")
     });
     
-  //---------------------------------------------//
+  //-------------------SIGN UP--------------------------//
 
   app.post("/signup", function (req, res) {
     db.User.findOne({
@@ -84,7 +84,7 @@ module.exports = function (app) {
     });
   });
 
-
+//------------SEARCH WITH YELP API------------------------------//
   app.post("/search", function (req, res) {
     search = 'https://api.yelp.com/v3/businesses/search?term=food&location=city';
     food = search.replace(/food/, req.body.query);
@@ -101,8 +101,8 @@ module.exports = function (app) {
       var h = "<html><body>INS</body></html>"
       var bud = "";
 
-      for(var i=0; i<10; i++){
-     
+      for(var i=0; i<20; i++){
+        bud += "<br>"
         bud += response.data.businesses[i].name
         bud += "<br>"
         bud += response.data.businesses[i].rating
@@ -115,8 +115,9 @@ module.exports = function (app) {
         bud += "<br>"
         bud += response.data.businesses[i].location.zip_code
         bud += "<br>"
-        bud += "<img src='"+response.data.businesses[i].image_url+ "' height='150' width='150'/><br>";
+        bud += "<img src='"+response.data.businesses[i].image_url+ "' height='300' width='300'/><br>";
         bud += "<br>" + "<br>"
+        bud +="</div>"
        
         
       }
