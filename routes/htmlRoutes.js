@@ -30,10 +30,13 @@ module.exports = function (app) {
         console.log("logged in")
         //user found
         if (result.password === req.body.password) {
+          req.session.loggedin = true;
+          req.session.username = req.body.username;
           res.send(200,"logged in");
          }
          else{
           res.send(200,"wrong password");
+      
          }
 
       } else {
@@ -44,6 +47,14 @@ module.exports = function (app) {
       }
     });
   });
+
+  //---------------------------------------------//
+  app.post("/logout", function (req, res) {
+    req.session = null;
+    res.send("logged out")
+    });
+    
+  //---------------------------------------------//
 
   app.post("/signup", function (req, res) {
     db.User.findOne({

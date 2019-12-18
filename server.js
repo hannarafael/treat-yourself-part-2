@@ -2,9 +2,25 @@ require("dotenv").config();
 var express = require("express");
 
 
+//----------------------------------//
+
+var session = require('express-session');
+//var cookieParser = require("cookie-parser");
+
+var app = express()
+//app.use(cookieParser());
+app.use(session({
+
+  secret: ["banana"]
+  // Cookie Options
+  
+}))
+
+//----------------------------------//
+
+
 var db = require("./models");
 
-var app = express();
 var PORT = process.env.PORT || 8080;
 
 // Middleware
@@ -15,8 +31,8 @@ app.use(express.static("public"));
 
 
 // Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app)
+require("./routes/htmlRoutes")(app)
 
 var syncOptions = { force: false };
 
